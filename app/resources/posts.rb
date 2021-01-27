@@ -3,8 +3,7 @@ module Resources
     helpers do
       params :post do
         requires :post, type: Hash, desc: '文章', documentation: { param_type: 'body' } do
-          optional :title, type: String, desc: '标题'
-          optional :content, type: String, desc: '内容'
+          optional :all, using: Entities::Post.to_params.except(:id)
         end
       end
     end
@@ -12,11 +11,11 @@ module Resources
     resource :users do
       route_param :user_id, type: Integer do
         resource :posts do
-          route_setting :swagger, root: 'posts'
           desc '查看某个用户的博文',
-               tags: ['posts'],
-               is_array: true,
-               entity: Entities::Post
+               tags: ['posts']
+          status 200 do
+            expose :posts, using: Entities::Post, documentation: { is_array: true }
+          end
           get do
             posts = Post.where(user_id: params[:user_id])
             present :posts, posts, with: Entities::Post
@@ -26,23 +25,24 @@ module Resources
     end
 
     resource :posts do
-      route_setting :swagger, root: 'posts'
       desc '查看我的所有博文',
-           tags: ['posts'],
-           is_array: true,
-           entity: Entities::Post
+           tags: ['posts']
+      status 200 do
+        expose :posts, using: Entities::Post, documentation: { is_array: true }
+      end
       get do
         authorize User, :login?
         posts = Post.where(user: current_user)
         present :posts, posts, with: Entities::Post
       end
 
-      route_setting :swagger, root: 'post'
       desc '创建新博文',
-           tags: ['posts'],
-           entity: Entities::Post
+           tags: ['posts']
       params do
         use :post
+      end
+      status 201 do
+        expose :post, using: Entities::Post
       end
       post do
         authorize User, :login?
@@ -54,10 +54,11 @@ module Resources
       end
 
       route_param :id, type: Integer do
-        route_setting :swagger, root: 'post'
         desc '查看博文',
-             tags: ['posts'],
-             entity: Entities::Post
+             tags: ['posts']
+        status 200 do
+          expose :post, using: Entities::Post
+        end
         get do
           post = Post.find(params[:id])
           present :post, post, with: Entities::Post, full: true
@@ -68,6 +69,9 @@ module Resources
              entity: Entities::Post
         params do
           use :post
+        end
+        status 200 do
+          expose :post, using: Entities::Post
         end
         put do
           post = Post.find(params[:id])

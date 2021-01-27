@@ -3,59 +3,62 @@ module Resources
     helpers do
       params :user do
         requires :user, type: Hash, desc: '用户', documentation: { param_type: 'body' } do
-          optional :name, type: String, desc: '姓名'
-          optional :age, type: Integer, desc: '年龄'
+          optional :all, using: Entities::User.to_params.except(:id)
         end
       end
     end
 
     resource :users do
-      route_setting :swagger, root: 'users'
       desc '返回所有用户',
-           tags: ['users'],
-           entity: Entities::User,
-           is_array: true
+           tags: ['users']
+      status 200 do
+        expose :users, using: Entities::User, documentation: { is_array: true }
+      end
       get do
         users = User.all
-        present :users, users, with: Entities::User
+        present :users, users
       end
 
-      route_setting :swagger, root: 'user'
       desc '注册新用户',
-           tags: ['users'],
-           entity: Entities::User
+           tags: ['users']
       params do
         use :user
+      end
+      status 201 do
+        expose :user, using: Entities::User
       end
       post do
         user_params = declared(params, include_missing: false)[:user]
         user = User.create!(user_params)
-        present :user, user, with: Entities::User
+        present :user, user
       end
     end
 
     resource :user do
-      route_setting :swagger, root: 'user'
       desc '查看我的信息',
-           tags: ['users'],
-           entity: Entities::User
+           tags: ['users']
+      status 200 do
+        expose :user, using: Entities::User
+      end
       get do
         authorize User, :login?
-        present :user, current_user, with: Entities::User
+        present :user, current_user
       end
 
-      route_setting :swagger, root: 'user'
       desc '更新我的信息',
            tags: ['users'],
            entity: Entities::User
       params do
         use :user
       end
+      status 200 do
+        expose :user, using: Entities::User
+      end
       put do
         authorize User, :login?
         user_params = declared(params, include_missing: false)[:user]
         current_user.update!(user_params)
-        present :user, current_user, with: Entities::User
+        present :user, current_user
       end
     end
   end
