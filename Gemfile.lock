@@ -1,3 +1,30 @@
+GIT
+  remote: https://github.com/run27017/grape-entity.git
+  revision: 4a61251bd66f43327b242b976ca8dc62cb5cbf0e
+  specs:
+    grape-entity (0.8.2)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.3.2)
+
+GIT
+  remote: https://github.com/run27017/grape-swagger.git
+  revision: d2343ca98f5c0bd2bc8302362304ca742938f176
+  specs:
+    grape-swagger (1.3.1)
+      grape (~> 1.3)
+
+GIT
+  remote: https://github.com/run27017/grape.git
+  revision: d453d9ab099d82f0044108a6d5f484c5e20bb943
+  specs:
+    grape (1.5.2)
+      activesupport
+      builder
+      dry-types (>= 1.1)
+      mustermann-grape (~> 1.0.0)
+      rack (>= 1.3.0)
+      rack-accept
+
 GEM
   remote: https://gems.ruby-china.com/
   specs:
@@ -57,18 +84,6 @@ GEM
       dry-schema (~> 1.5, >= 1.5.2)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
-    grape (1.5.1)
-      activesupport
-      builder
-      dry-types (>= 1.1)
-      mustermann-grape (~> 1.0.0)
-      rack (>= 1.3.0)
-      rack-accept
-    grape-entity (0.8.2)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.3.2)
-    grape-swagger (1.3.1)
-      grape (~> 1.3)
     grape-swagger-entity (0.5.1)
       grape-entity (>= 0.6.0)
       grape-swagger (>= 1.2.0)
@@ -119,8 +134,9 @@ DEPENDENCIES
   config
   database_cleaner
   factory_bot
-  grape
-  grape-swagger
+  grape!
+  grape-entity!
+  grape-swagger!
   grape-swagger-entity
   jwt
   minitest
