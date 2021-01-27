@@ -1,0 +1,137 @@
+GEM
+  remote: https://gems.ruby-china.com/
+  specs:
+    activemodel (6.0.3.4)
+      activesupport (= 6.0.3.4)
+    activerecord (6.0.3.4)
+      activemodel (= 6.0.3.4)
+      activesupport (= 6.0.3.4)
+    activesupport (6.0.3.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
+    builder (3.2.4)
+    byebug (11.1.3)
+    coderay (1.1.3)
+    concurrent-ruby (1.1.8)
+    config (2.2.3)
+      deep_merge (~> 1.2, >= 1.2.1)
+      dry-validation (~> 1.0, >= 1.0.0)
+    database_cleaner (1.8.5)
+    deep_merge (1.2.1)
+    dry-configurable (0.12.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.5, >= 0.5.0)
+    dry-container (0.7.2)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1, >= 0.1.3)
+    dry-core (0.5.0)
+      concurrent-ruby (~> 1.0)
+    dry-equalizer (0.3.0)
+    dry-inflector (0.2.0)
+    dry-initializer (3.0.4)
+    dry-logic (1.1.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.5, >= 0.5)
+    dry-schema (1.6.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.8, >= 0.8.3)
+      dry-core (~> 0.5, >= 0.5)
+      dry-initializer (~> 3.0)
+      dry-logic (~> 1.0)
+      dry-types (~> 1.5)
+    dry-types (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-container (~> 0.3)
+      dry-core (~> 0.5, >= 0.5)
+      dry-inflector (~> 0.1, >= 0.1.2)
+      dry-logic (~> 1.0, >= 1.0.2)
+    dry-validation (1.6.0)
+      concurrent-ruby (~> 1.0)
+      dry-container (~> 0.7, >= 0.7.1)
+      dry-core (~> 0.4)
+      dry-equalizer (~> 0.2)
+      dry-initializer (~> 3.0)
+      dry-schema (~> 1.5, >= 1.5.2)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    grape (1.5.1)
+      activesupport
+      builder
+      dry-types (>= 1.1)
+      mustermann-grape (~> 1.0.0)
+      rack (>= 1.3.0)
+      rack-accept
+    grape-entity (0.8.2)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.3.2)
+    grape-swagger (1.3.1)
+      grape (~> 1.3)
+    grape-swagger-entity (0.5.1)
+      grape-entity (>= 0.6.0)
+      grape-swagger (>= 1.2.0)
+    hashie (4.1.0)
+    hashie-forbidden_attributes (0.1.1)
+      hashie (>= 3.0)
+    i18n (1.8.7)
+      concurrent-ruby (~> 1.0)
+    jwt (2.2.2)
+    method_source (1.0.0)
+    minitest (5.14.3)
+    multi_json (1.15.0)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    mustermann-grape (1.0.1)
+      mustermann (>= 1.0.0)
+    otr-activerecord (1.4.1)
+      activerecord (>= 4.0, < 6.1)
+      hashie-forbidden_attributes (~> 0.1)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.9.0)
+      byebug (~> 11.0)
+      pry (~> 0.13.0)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
+    rack (2.2.3)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
+    rake (13.0.3)
+    ruby2_keywords (0.0.4)
+    sqlite3 (1.4.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.9)
+      thread_safe (~> 0.1)
+    zeitwerk (2.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord
+  config
+  database_cleaner
+  factory_bot
+  grape
+  grape-swagger
+  grape-swagger-entity
+  jwt
+  minitest
+  otr-activerecord
+  pry-byebug
+  pundit
+  rack
+  rack-cors
+  rack-test
+  rake
+  sqlite3
+
+BUNDLED WITH
+   2.1.4

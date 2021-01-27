@@ -1,0 +1,2 @@
+jwt:
+  secret: 'my$ecretK3y'
