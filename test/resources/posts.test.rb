@@ -16,7 +16,7 @@ module Resources
       header 'X-Token', user.to_token
       get 'posts'
       assert last_response.ok?
-      assert_equal(posts.map(&:id), last_response_json['posts'].map{ |it| it['id'] })
+      assert_equal posts, presents(:posts)
     end
 
     def test_list_of_specified_user
@@ -26,7 +26,7 @@ module Resources
 
       get "users/#{user.id}/posts"
       assert last_response.ok?
-      assert_equal(posts.map(&:id), last_response_json['posts'].map{ |it| it['id'] })
+      assert_equal posts, presents(:posts)
     end
 
     def test_create
@@ -35,13 +35,13 @@ module Resources
            { post: attributes_for(:post, title: 'new post') }.to_json,
            { 'CONTENT_TYPE' => 'application/json' }
       assert last_response.created?
-      assert_equal 'new post', last_response_json['post']['title']
+      assert_equal 'new post', presents(:post).title
     end
 
     def test_show
       get "posts/#{@post.id}"
       assert last_response.ok?
-      assert_equal 1, last_response_json['post']['id']
+      assert_equal @post, presents(:post)
     end
 
     def test_update
@@ -50,8 +50,8 @@ module Resources
           { post: { title: 'title updated', content: 'content updated' } }.to_json,
           { 'CONTENT_TYPE' => 'application/json' }
       assert last_response.ok?
-      assert_equal 'title updated', last_response_json['post']['title']
-      assert_equal 'content updated', last_response_json['post']['content']
+      assert_equal 'title updated', presents(:post).title
+      assert_equal 'content updated', presents(:post).content
     end
 
     def test_destroy
